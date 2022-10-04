@@ -1,0 +1,92 @@
+﻿@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+@section Css{
+    <link rel="stylesheet"asp-append-version="true"  href="~/src/css/secondary.css" />
+    <style>
+
+        /*======================
+            404 page
+        =======================*/
+
+
+        .page_404 {
+            background: #fff;
+            font-family: 'Arvo', serif;
+        }
+
+            .page_404 img {
+                width: 100%;
+            }
+
+        .four_zero_four_bg {
+            background-image: url(https://cdn.dribbble.com/users/722246/screenshots/3066818/404-page.gif);
+            height: 650px;
+            background-position: center;
+        }
+
+
+            .four_zero_four_bg h1 {
+                font-size: 80px;
+            }
+
+            .four_zero_four_bg h3 {
+                font-size: 80px;
+            }
+
+        .link_404 {
+            color: #fff !important;
+            padding: 10px 20px;
+            background: #39ac31;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .contant_box_404 {
+            margin-top: -50px;
+        }
+    </style>
+}
+<section class="page_404">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="col-sm-12  text-center">
+                    <div class="four_zero_four_bg">
+
+
+
+                    </div>
+
+                    <div class="contant_box_404">
+                        @if (culture == "az")
+                        {
+                            <h3 class="h2 mb-3">
+                                Səhifə tapılmadı !
+                            </h3>
+                            <a asp-controller="Home" asp-action="Index" class="itBtn">Ana Səhifə</a>
+                        }
+                        else if (culture == "en")
+                        {
+                            <h3 class="h2 mb-3">
+                                Page not found !
+                            </h3>
+                            <a asp-controller="Home" asp-action="Index" class="itBtn">Home</a>
+                        }
+                        else if (culture == "ru")
+                        {
+                            <h3 class="h2 mb-3">
+                                Страница не найдена !
+                            </h3>
+                            <a asp-controller="Home" asp-action="Index" class="itBtn">Домашняя страница</a>
+                        }
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

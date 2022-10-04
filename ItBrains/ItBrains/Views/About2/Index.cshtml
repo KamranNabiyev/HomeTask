@@ -1,0 +1,46 @@
+﻿@model About2
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+<!-- **************************   İnfo start     ************************ -->
+<section class="info">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <div class="info-data">
+                    @if (culture == "az")
+                    {
+                        <p class="info-title">Missiyamız</p>
+                        <p class="info-description">
+                            @Html.Raw(Model.AzDescription)
+                        </p>
+                    }
+                    else if (culture == "en")
+                    {
+                        <p class="info-title">About</p>
+                        <p class="info-description">
+                            @Html.Raw(Model.EnDescription)
+                        </p>
+                    }
+                    else if (culture == "ru")
+                    {
+                        <p class="info-title">О Нас</p>
+                        <p class="info-description">
+                            @Html.Raw(Model.RuDescription)
+                        </p>
+                    }
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <div class="info-video">
+                    <img src="~/src/img/@Model.Image" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- *********************  İnfo end    ************************ -->
+@section Css{
+    <link rel="stylesheet"asp-append-version="true"  href="~/src/css/secondary.css" />
+}

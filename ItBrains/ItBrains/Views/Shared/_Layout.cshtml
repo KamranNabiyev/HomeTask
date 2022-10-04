@@ -1,0 +1,116 @@
+﻿@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT Brains Academy</title>
+    <link rel="shortcut icon" href="~/src/img/logo/logo_single.png" />
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="~/src/vendor/bootstrap/bootstrap.css" />
+    <!-- owl carousel css -->
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="~/src/vendor/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet"
+          href="~/src/vendor/owl-carousel/owl.theme.default.min.css" />
+    <!-- fonts -->
+    <!--font Awesome css-->
+    <link rel="stylesheet" href="~/src/vendor/font-awesome/css/all.min.css" />
+    <!--main css-->
+    <link asp-append-version="true" rel="stylesheet" href="~/src/css/style.css" />
+    @RenderSection("Css", false)
+
+</head>
+<body >
+    <!-- *********************     Header  Start     ************************ -->
+    <header>
+        <div class="container">
+            <nav id="nav" class="d-flex align-items-center">
+                <div class="logo d-flex align-items-center">
+                    <div class="nav-logo">
+                        <a asp-controller="Home" asp-action="Index">
+                            <img class="img-fluid" src="~/src/img/logo/logo.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation d-lg-flex d-none align-items-center ml-auto">
+                    <div class="nav-link">
+                        <a asp-controller="Courses" asp-action="Index">@Localizer["Courses"]</a>
+                    </div>
+                    <div class="nav-link">
+                        <a asp-controller="Teachers" asp-action="Index">@Localizer["OurTeachers"]</a>
+                    </div>
+                    <div class="nav-link">
+                        <a asp-controller="Successes" asp-action="Index">@Localizer["Our Successes"]</a>
+                    </div>
+
+                    <div class="nav-link more-rel">
+                        <a style="cursor:pointer">HAQQIMIZDA</a>
+                        <i style="font-size: 11px"
+                           class="fas fa-chevron-down text-light"></i>
+                        <div class="more-abs">
+
+                            <div class="d-flex flex-column">
+                                <a asp-controller="About1" asp-action="Index">Dəyərlərİmİz</a>
+                                <a asp-controller="About2" asp-action="Index">MİSSİYAMIZ</a>
+                                @*   <a asp-controller="News" asp-action="Index">Xəbərlər</a>*@
+                                <a asp-controller="About3" asp-action="Index">VİZYONUMUZ</a>
+                                @*<a asp-controller="News" asp-action="Index">@Localizer["News"]</a>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-link more-rel">
+                        <a style="cursor:pointer">@Localizer["More"]</a>
+                        <i style="font-size: 11px"
+                           class="fas fa-chevron-down text-light"></i>
+                        <div class="more-abs">
+
+                            <div class="d-flex flex-column">
+                                <a asp-controller="Contact" asp-action="Index">@Localizer["Contact"]</a>
+                                @*   <a asp-controller="News" asp-action="Index">Xəbərlər</a>*@
+                                <a asp-controller="Gallery" asp-action="Index">@Localizer["Gallery"]</a>
+                                @*<a asp-controller="News" asp-action="Index">@Localizer["News"]</a>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="Nav-open-btn" class="mob-nav-btn d-lg-none d-inline-block">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <!-- <div
+                      class="nav-contact"
+                    >
+
+                    </div> -->
+            </nav>
+        </div>
+    </header>
+    <!-- *********************       Header  End     ************************ -->
+    <!-- ******************************************************************** -->
+
+    @RenderBody()
+    <!-- ******************************************************************** -->
+    @await Component.InvokeAsync("Footer")
+    <!-- ******************************************************************** -->
+    @RenderSection("Components", false)
+
+    <!--jquery-->
+    <script src="~/src/vendor/jquery/jquery.min.js"></script>
+    <!--bootstrap-->
+    <script src="~/src/vendor/bootstrap/popper.min.js"></script>
+    <script src="~/src/vendor/bootstrap/bootstrap.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="~/src/vendor/owl-carousel/owl.carousel.min.js"></script>
+    <!--javascript-->
+    <script src="~/src/js/main.js"></script>
+    @RenderSection("Scripts", false)
+    <!--scripts end-->
+</body>
+</html>

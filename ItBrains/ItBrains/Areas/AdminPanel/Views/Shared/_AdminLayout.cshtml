@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ItBrains Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/toogoo/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/toogoo/vendors/base/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <link rel="stylesheet" href="~/toogoo/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <!-- End plugin css for this page -->
+    <!--font Awesome css-->
+    <link rel="stylesheet" href="~/src/vendor/font-awesome/css/all.min.css" />
+    @RenderSection("Css", false)
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/toogoo/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/src/img/logo/logo.png" />
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="navbar-brand-wrapper d-flex justify-content-center">
+                <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+                    <!--************************************* Deyiw *******************************************-->
+                    <a class="navbar-brand brand-logo" asp-area="Default" asp-controller="Home" asp-action="Index"><img src="~/src/img/logo/footer-logo.png" alt="logo" /></a>
+                    <a class="navbar-brand brand-logo-mini" asp-area="Default" asp-controller="Home" asp-action="Index"><img src="~/src/img/logo/footer-logo.png" alt="logo" /></a>
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                        <span class="mdi mdi-sort-variant"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                            @*<img src="~/toogoo/images/faces/face5.jpg" alt="profile" />*@
+                            <span class="nav-profile-name">@User.Identity.Name</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" asp-area="Default" asp-controller="Home" asp-action="Index">
+                                <i class="mdi mdi-home menu-icon text-primary"></i>
+                                ItBrains
+                            </a>
+                            <a class="dropdown-item" asp-area="Default" asp-controller="Account" asp-action="Logout">
+                                <i class="mdi mdi-logout text-primary"></i>
+                                Çıxış
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">Ana Səhifə</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Service" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Kurslarımız</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#category-nav">
+                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <span class="menu-title"> Video Dərsliklər</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="category-nav">
+                            <ul class="nav flex-column sub-menu" style="padding: 0.25rem 0 0.6rem 1.65rem !important;">
+                                <li class="nav-item"> <a class="nav-link" asp-controller="VideoLessons" asp-action="Index">Dərsliklər</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Videos" asp-action="Index">Videolar</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Teacher" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Müəllimlərimiz</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="GraduatedOpinion" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Məzunlarımız</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="News" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Xəbərlər</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Gallery" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Qalereya</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Successes" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Beynəlxalq sertifikasiya</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Miq" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Miq</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Contact" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Əlaqə</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="About" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Niye IT Brains Academy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="About1" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Deyerlerimiz</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="About2" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Missiyamiz</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="About3" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            <span class="menu-title">Vizyonumuz</span>
+                        </a>
+                    </li>
+                    @*<li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#category-nav2">
+                <i class="mdi mdi-gamepad-variant menu-icon"></i>
+                <span class="menu-title"> Oyunlar</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="category-nav2">
+                <ul class="nav flex-column sub-menu" style="padding: 0.25rem 0 0.6rem 1.65rem !important;">
+                    <li class="nav-item"> <a class="nav-link" asp-controller="Famous" asp-action="Index">Məhşurlar</a></li>
+                    <li class="nav-item"> <a class="nav-link" asp-controller="Persones" asp-action="Index">Personajlar</a></li>
+                </ul>
+            </div>
+        </li>*@
+                </ul>
+            </nav>
+            <div class="main-panel">
+                <div class="content-wrapper">
+
+                    @RenderBody()
+
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © <a href="https://wa.me/994993401010" target="_blank">JrC</a> 2021</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">  By  <a href="https://wa.me/994993401010" target="_blank">JrC</a>  </span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/toogoo/vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    @*<script src="~/toogoo/vendors/chartjs/Chart.min.js"></script>
+        <script src="~/toogoo/vendors/datatables.net/jquery.dataTables.js"></script>
+        <script src="~/toogoo/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>*@
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="~/toogoo/js/off-canvas.js"></script>
+    <script src="~/toogoo/js/hoverable-collapse.js"></script>
+    <script src="~/toogoo/js/template.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    @*<script src="~/toogoo/js/dashboard.js"></script>
+        <script src="~/toogoo/js/data-table.js"></script>
+        <script src="~/toogoo/js/jquery.dataTables.js"></script>
+        <script src="~/toogoo/js/dataTables.bootstrap4.js"></script>*@
+    <!-- End custom js for this page-->
+    <script type="text/javascript" src="~/src/vendor/jquery/jquery.min.js"></script>
+    <script src="~/toogoo/js/jquery.cookie.js" type="text/javascript"></script>
+    @RenderSection("Scripts", false)
+</body>
+
+</html>

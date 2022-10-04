@@ -1,0 +1,50 @@
+﻿
+@model Success
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">Qalereya</h4>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Photo"></label>
+                        <input asp-for="Photo" class="form-control">
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Who">Certificate-in sahibi</label>
+                        <input asp-for="Who" class="form-control">
+                        <span asp-validation-for="Who" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="By">Certificate-in sahibinin vezifesi</label>
+                        <input asp-for="By" class="form-control">
+                        <span asp-validation-for="By" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Position">Certificate-in adi</label>
+                        <input asp-for="Position" class="form-control">
+                        <span asp-validation-for="Position" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <button type="submit" class="effect effect-2 update mr-2">Düzəliş et <i class="mdi mdi-arrow-right-bold"></i></button>
+                        <a asp-action="Index" class="effect effect-2 bg-secondary">Geri Dön <i class="mdi mdi-arrow-right-bold"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Css{
+    <link rel="stylesheet" href="~/toogoo/js/jcrop.css" />
+}
+@section Scripts{
+    <partial name="_ValidationScriptsPartial">
+}
+

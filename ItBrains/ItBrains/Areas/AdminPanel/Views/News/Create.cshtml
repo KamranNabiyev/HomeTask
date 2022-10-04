@@ -1,0 +1,268 @@
+﻿
+@model News
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">Xəbər</h4>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="d-flex">
+
+                        <input class=" mb-3 mr-3" style="width:250px!important" type="file" id="image_loader" />
+                        <div style="width: 50px;height:50px">
+                            <div class="loading" style="display:none !important">
+                                <i class="fas fa-spinner"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="previews d-flex">
+                        <div class="source mr-5">
+                            <div class="d-flex align-items-center">
+                                <div id="image_input" style="display:none"></div>
+
+                            </div>
+                            <a id="crop-img" style="display:none !important" class="effect effect-2  mt-3">Kəs</a>
+                            <a id="save-crop-img" style="display:none !important;" class="effect effect-2  mt-3">Yadda Saxla</a>
+                        </div>
+
+                        <div class="crop">
+                            <img id="image_output" />
+                        </div>
+                        <input id="imgCropped" name="imgCropped" type="hidden" />
+
+                    </div>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">Xəbərin adı</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#az1" role="tab" aria-controls="home" aria-selected="true">Az</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#en1" role="tab" aria-controls="profile" aria-selected="false">En</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#ru1" role="tab" aria-controls="contact" aria-selected="false">Ru</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="az1" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form-group">
+                                <input asp-for="AzTitle" class="form-control">
+                                <span asp-validation-for="AzTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="en1" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="form-group">
+                                <input asp-for="EnTitle" class="form-control">
+                                <span asp-validation-for="EnTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ru1" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="form-group">
+                                <input asp-for="RuTitle" class="form-control">
+                                <span asp-validation-for="RuTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">Xəbərin qısa hissəsi</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#az2" role="tab" aria-controls="home" aria-selected="true">Az</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#en2" role="tab" aria-controls="profile" aria-selected="false">En</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#ru2" role="tab" aria-controls="contact" aria-selected="false">Ru</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="az2" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form-group">
+                                <input asp-for="AzSubTitle" class="form-control">
+                                <span asp-validation-for="AzSubTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="en2" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="form-group">
+                                <input asp-for="EnSubTitle" class="form-control">
+                                <span asp-validation-for="EnSubTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ru2" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="form-group">
+                                <input asp-for="RuSubTitle" class="form-control">
+                                <span asp-validation-for="RuSubTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">Tam Xəbər</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#az3" role="tab" aria-controls="home" aria-selected="true">Az</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#en3" role="tab" aria-controls="profile" aria-selected="false">En</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#ru3" role="tab" aria-controls="contact" aria-selected="false">Ru</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="az3" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form-group">
+                                <textarea asp-for="AzDescription" class="form-control"></textarea>
+                                <span asp-validation-for="AzDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="en3" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="form-group">
+                                <textarea asp-for="EnDescription" class="form-control"></textarea>
+                                <span asp-validation-for="EnDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ru3" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="form-group">
+                                <textarea asp-for="RuDescription" class="form-control"></textarea>
+                                <span asp-validation-for="RuDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <button type="submit" class="effect effect-2 update mr-2">Yarat <i class="mdi mdi-arrow-right-bold"></i></button>
+                        <a asp-action="Index" class="effect effect-2 bg-secondary">Geri Dön <i class="mdi mdi-arrow-right-bold"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Css{
+    <link rel="stylesheet" href="~/toogoo/js/jcrop.css" />
+}
+@section Scripts{
+    <partial name="_ValidationScriptsPartial">
+
+        <script src="~/toogoo/js/jcrop.js"></script>
+
+        <script type="text/javascript">
+            var cropImg = document.getElementById('crop-img');
+            var saveImg = document.getElementById('save-crop-img');
+            var imageLoader = document.getElementById('image_loader');
+            var imageLoader2 = document.getElementById('image_loader2');
+            imageLoader.addEventListener('change', handleImage, false);
+
+            function handleImage(e) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (event) {
+
+                    $(".loading").css("display", "block")
+                    var image = new Image();
+
+                    image.onload = function () {
+
+
+
+                        var canvas = document.createElement('canvas');
+
+                        canvas.width = image.width;
+                        canvas.height = image.height;
+
+                        var ctx = canvas.getContext('2d');
+                        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                        $('#image_input').html(['<img src="', canvas.toDataURL(), '"/>'].join(''));
+                        var img = $('#image_input img')[0];
+
+                        var canvas = document.createElement('canvas');
+
+                        $('#image_input img').Jcrop({
+                            boxWidth: 400,
+                            bgColor: 'black',
+                            bgOpacity: .6,
+                            setSelect: [0, 0, 200, 3200],
+                            aspectRatio: 350 / 230,
+                            onChange: imgSelect
+
+                        });
+
+                        function imgSelect(selection) {
+                            canvas.width = 1050;
+                            canvas.height = 690;
+
+                            var ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, selection.x, selection.y, selection.w, selection.h, 0, 0, canvas.width, canvas.height);
+                            $('#image_input').css("display", "block")
+                            $('#image_output').css("display", "block")
+                            $('#image_output').css("width", "350px")
+                            $('#image_output').css("height", "230px")
+                            $(".loading").css("display", "none")
+                            cropImg.style.display = "inline-block"
+                            saveImg.style.display = "inline-block"
+                        }
+                        cropImg.addEventListener("click", function () {
+
+                            $('#image_output').attr('src', canvas.toDataURL());
+
+                        })
+                        saveImg.addEventListener("click", function () {
+
+                            //$('#Photo').val(dataURLtoFile(canvas.toDataURL("image.png"),"image.png"))
+                            $("#imgCropped").val(canvas.toDataURL("image/jpeg", 0.7))
+
+                            $('#image_output').css("display", "none")
+                            saveImg.style.display = "none"
+                            console.log($('#imgCropped').val())
+                        })
+                    }
+                    image.src = event.target.result;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+
+            }</script>
+
+        <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#AzDescription'))
+                .catch(error => {
+                    console.error(error);
+                });
+            ClassicEditor
+                .create(document.querySelector('#RuDescription'))
+                .catch(error => {
+                    console.error(error);
+                });
+            ClassicEditor
+                .create(document.querySelector('#EnDescription'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+
+}
+
+
+
+
+
+
+

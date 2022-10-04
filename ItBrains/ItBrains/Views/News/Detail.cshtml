@@ -1,0 +1,52 @@
+﻿@model News
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+<main>
+    <!-- ********************************************************************** -->
+    <!-- **************************   İnfo start     ************************ -->
+    <section class="blog-detail">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="detail-img">
+                        <div class="blog-image">
+                            <img src="~/src/img/news/@Model.Image" alt="" />
+                        </div>
+                    </div>
+                    <div class="detail">
+                        @if (culture == "az")
+                        {
+                            <h2 class="head">@Model.AzTitle</h2>
+                            <div class="content">
+                                @Html.Raw(Model.AzDescription)
+                            </div>
+                        }
+                        else if (culture == "en")
+                        {
+                            <h2 class="head">@Model.EnTitle</h2>
+                            <div class="content">
+                                @Html.Raw(Model.EnDescription)
+                            </div>
+                        }
+                        else if (culture == "ru")
+                        {
+                            <h2 class="head">@Model.RuTitle</h2>
+                            <div class="content">
+                                @Html.Raw(Model.RuDescription)
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- *********************  İnfo end    ************************ -->
+    <!-- ******************************************************************** -->
+    <!-- *********************     Footer  Start     ************************ -->
+</main>
+
+@section Css{
+    <link rel="stylesheet"asp-append-version="true"  href="~/src/css/secondary.css" />
+}

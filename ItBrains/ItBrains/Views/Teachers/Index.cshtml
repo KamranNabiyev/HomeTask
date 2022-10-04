@@ -1,0 +1,68 @@
+﻿@model List<Teacher>
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+<!-- *********************     Main  Start     ************************ -->
+<main>
+    <!-- **************************   Teachers Start   ************************ -->
+    <section class="section teachers">
+        <div class="container">
+            <div class="row flex-column align-items-center justify-content-center">
+                <div class="col-lg-8">
+
+                    @if (culture == "az")
+                    {
+                        <h2 class="text-center">MÜƏLLİM VƏ İDARƏ HEYƏTİMİZ</h2>
+                        <p class="text-center mt-4">
+                            BİZİM MÜƏLLİM VƏ İDARƏ HEYƏTİMİZ SİZİN UĞURLU GƏLƏCƏYİNİZ ÜÇÜN ÇALIŞIR!
+                        </p>
+                    }
+                    else if (culture == "en")
+                    {
+                        <h2 class="text-center">OUR TEACHER AND STAFF</h2>
+                        <p class="text-center mt-4">
+                            WE WORK TO HELP YOU ACHIEVE YOUR GOALS
+                            !
+                        </p>
+                    }
+                    else if (culture == "ru")
+                    {
+                        <h2 class="text-center">НАШ УЧИТЕЛЬ И СОТРУДНИКИ</h2>
+                        <p class="text-center mt-4">
+                            МЫ РАБОТАЕМ ДЛЯ ВАШЕГО ДОСТИЖЕНИЯ ВАШИХ ЦЕЛЕЙ
+                            !
+                        </p>
+                    }
+                </div>
+            </div>
+            <div class="row mt-5 justify-content-center">
+                @foreach (Teacher teacher in Model)
+                {
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="card">
+                            <div class="imgBx">
+                                <img src="~/src/img/teachers/@teacher.Image"
+                                     alt="images" />
+                            </div>
+                            <div class="details">
+                                <h2>@teacher.Fullname<br /><span>@teacher.Field</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </section>
+    <!-- **************************   Teachers End   ************************ -->
+</main>
+<!-- *********************      Main  End     ************************ -->
+<!-- ******************************************************************** -->
+
+
+
+@section Css{
+    <link rel="stylesheet"asp-append-version="true"  href="~/src/css/secondary.css" />
+}
+

@@ -1,0 +1,90 @@
+﻿@model List<VideoLesson>
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+<main>
+    <section class="videos">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="video-title">
+                    @if (culture == "az")
+                    {
+                        <p>VİDEO DƏRSLƏR</p>
+                        <p class="video-description">
+                            Vİdeodərslər vasİtəsİlə sİz yenİ bİlİklər qazana və bİlİklərİnİzİ daha da təkmİlləşdİrə bİlərsİnİz
+                        </p>
+                    }
+                    else if (culture == "en")
+                    {
+                        <p>VIDEO LESSONS</p>
+                        <p class="video-description">
+                            You can increase your knowledge through video lessons
+                        </p>
+                    }
+                    else if (culture == "ru")
+                    {
+                        <p>ВИДЕО УРОКИ</p>
+                        <p class="video-description">
+                            Вы можете расширить свои знания с помощью видеоуроков
+                        </p>
+                    }
+
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-center">
+                @foreach (VideoLesson item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="card" style="width: 100%">
+                            <div class="video-img">
+                                <img src="~/src/img/videolessons/@item.Image"
+                                     class="card-img-top"
+                                     alt="video1" />
+                            </div>
+
+                            @if (culture == "az")
+                            {
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        @item.AzName
+                                    </h5>
+                                    <a asp-controller="Video" asp-action="Index" asp-route-videoLessonId="@item.Id" class="video-button">
+                                        DƏRSLƏRİ İZLƏ...
+                                        <span> <i class="fas fa-angle-right"></i></span>
+                                    </a>
+                                </div>
+                            }
+                            else if (culture == "en")
+                            {
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        @item.EnName
+                                    </h5>
+                                    <a asp-controller="Video" asp-action="Index" asp-route-videoLessonId="@item.Id" class="video-button">
+                                        FOLLOW THE LESSONS...
+                                        <span> <i class="fas fa-angle-right"></i></span>
+                                    </a>
+                                </div>
+                            }
+                            else if (culture == "ru")
+                            {
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        @item.RuName
+                                    </h5>
+                                    <a asp-controller="Video" asp-action="Index" asp-route-videoLessonId="@item.Id" class="video-button">
+                                        СЛЕДУЙТЕ УРОКАМ...
+                                        <span> <i class="fas fa-angle-right"></i></span>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
+@section Css{
+    <link rel="stylesheet"asp-append-version="true"  href="~/src/css/secondary.css" />
+}

@@ -1,0 +1,217 @@
+﻿@model List<Gallery>
+
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+<!-- *********************     Main  Start     ************************ -->
+<main>
+    <!-- *********************       Gallery  Start     ************************ -->
+    <section class="gallery">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="gallery-title">
+
+                    @if (culture == "az")
+                    {
+                        <p>Qalereya</p>
+                        <p class="gallery-description font-weight-bold">IT BRAINS AİLƏSİ</p>
+                    }
+                    else if (culture == "en")
+                    {
+                        <p>Gallery</p>
+                        <p class="gallery-description font-weight-bold">IT BRAINS FAMILY</p>
+                    }
+                    else if (culture == "ru")
+                    {
+                        <p>Qalareya</p>
+                        <p class="gallery-description font-weight-bold">СЕМЬЯ IT BRAINS </p>
+                    }
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-center">
+                <div class="gallery-name">
+                    @if (culture == "az")
+                    {
+                        <a style="cursor:pointer" id="teacher">MÜƏLLİMLƏR</a>
+                        <a style="cursor:pointer" id="student">TƏLƏBƏLƏR</a>
+                    }
+                    else if (culture == "en")
+                    {
+                        <a style="cursor:pointer" id="teacher">TEACHERS</a>
+                        <a style="cursor:pointer" id="student">STUDENTS</a>
+                    }
+                    else if (culture == "ru")
+                    {
+                        <a style="cursor:pointer"  id="teacher">УЧИТЕЛЯ</a>
+                        <a style="cursor:pointer" id="student">УЧЕНИКИ</a>
+                    }
+
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-center" id="teacherImages">
+                @foreach (var item in Model.Where(x => x.IsTeacher))
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="gallery-image">
+                            <img class="myImg" src="~/src/img/gallery/@item.Image" alt="" />
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+            <div class="row align-items-center justify-content-center" id="studentImages">
+                @foreach (var item in Model.Where(x => !x.IsTeacher))
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="gallery-image">
+                            <img class="myImg" src="~/src/img/gallery/@item.Image" alt="" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+    <!-- *********************     Gallery  end     ************************ -->
+    <!-- ******************************************************************** -->
+</main>
+<!-- *********************      Main  End     ************************ -->
+@section Css{
+    <link rel="stylesheet"asp-append-version="true"  href="~/src/css/secondary.css" />
+}
+@section Scripts{
+ <script>
+    let imgs = document.querySelectorAll(".gallery-image img");
+
+
+
+    let modalCarousel = document.getElementById("modal-product-images");
+
+    //**************      change main img    ***************
+
+
+
+
+
+    //***************    Media 700px function    ***************/
+    function myFunction(x) {
+        if (x.matches) {
+            modalCarousel.remove()
+        }
+        else {
+            let closeModalCarousel = document.getElementById("close-modal-product-images");
+            let carouselImgs = document.querySelectorAll(".bg-img");
+            let carouselItems = document.querySelectorAll(".carousel-item");
+            $('.carousel.myModal').carousel({
+                interval: false,
+                touch: false
+            })
+
+
+            imgs.forEach((element) => {
+                element.addEventListener("click", function () {
+                    console.log("ds")
+                    modalCarousel.style.opacity = 1
+                    modalCarousel.style.display = "block"
+                    carouselItems.forEach((e) => {
+                        if (e.classList.contains("active")) {
+                            e.classList.remove("active")
+                        }
+                        if (element.src === e.children[0].children[0].src) {
+                            e.classList.add("active")
+                        }
+                    });
+                })
+            });
+
+
+
+            //****************    close Modal    ******************
+            closeModalCarousel.addEventListener("click", function () {
+                modalCarousel.style.opacity = 0
+                modalCarousel.style.display = "none"
+            })
+
+
+            // ****************    Helper Function    *****************
+
+
+        }
+    }
+
+    var x = window.matchMedia("(max-width: 340px)")
+    myFunction(x) // Call listener function at run time
+    x.addListener(myFunction)
+
+
+
+
+
+
+</script>
+}
+@section Components{
+    <div id="modal-product-images">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="myModal row justify-content-center">
+                        <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+                            <div id="carouselExampleFade"
+                                 class="carousel slide carousel-fade myModal"
+                                 data-ride="carousel"
+                                 data-interval="false">
+                                <div class="carousel-inner" id="carousel-inner">
+                                    @foreach (Gallery item in Model.Where(x => x.IsTeacher))
+                                    {
+                                        <div class="carousel-item ">
+                                            <div class="bg-img">
+                                                <img src="src/img/gallery/@item.Image"
+                                                     class="zoom-images"
+                                                     alt="" />
+                                            </div>
+
+                                        </div>
+
+                                    }
+                                    @foreach (Gallery item in Model.Where(x => !x.IsTeacher))
+                                    {
+                                        <div class="carousel-item ">
+                                            <div class="bg-img">
+                                                <img src="src/img/gallery/@item.Image"
+                                                     class="zoom-images"
+                                                     alt="" />
+                                            </div>
+
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev"
+                           href="#carouselExampleFade"
+                           role="button"
+                           data-slide="prev">
+                            <span class="carousel-control-prev-icon"
+                                  aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next"
+                           href="#carouselExampleFade"
+                           role="button"
+                           data-slide="next">
+                            <span class="carousel-control-next-icon"
+                                  aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        <div class="close-btn" id="close-modal-product-images">
+                            <i class="fas fa-times" style="color: white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

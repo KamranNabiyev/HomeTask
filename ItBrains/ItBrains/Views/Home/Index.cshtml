@@ -1,0 +1,377 @@
+﻿@inject IViewLocalizer Localizer
+@model HomeVM
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+<!-- *********************     Main  Start     ************************ -->
+<main>
+    <!-- *********************   BackGround-Image Start  ************************ -->
+    <section class="bg-sec slider" style="overflow: hidden">
+        <div id="carouselExampleFade"
+             class="carousel slide carousel-fade mySlider"
+             data-ride="carousel"
+             data-interval="true"
+             style="height: 100%">
+            <div class="carousel-inner" style="height: 100%">
+                <div class="carousel-item active">
+                    <div class="bg-img"
+                         style=" background-image: linear-gradient(to bottom, rgba(7,0,66,0.561) 0%, rgba(4,1,88,0.534) 100%),url(src/img/slider/Slider1.jpg);"></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="bg-img"
+                         style="background-image: linear-gradient(to bottom, rgba(7,0,66,0.561) 0%, rgba(4,1,88,0.534) 100%),url(src/img/slider/Slider2.jpg); "></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="bg-img"
+                         style="background-image: linear-gradient(to bottom, rgba(7,0,66,0.561) 0%, rgba(4,1,88,0.534) 100%),url(src/img/slider/Slider3.jpg); "></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="bg-img"
+                         style="background-image: linear-gradient(to bottom, rgba(7,0,66,0.561) 0%, rgba(4,1,88,0.534) 100%),url(src/img/slider/Slider4.jpg); "></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="bg-img"
+                         style="background-image: linear-gradient(to bottom, rgba(7,0,66,0.561) 0%, rgba(4,1,88,0.534) 100%),url(src/img/slider/Slider5.jpg); "></div>
+                </div>
+            </div>
+            <a class="carousel-control-prev"
+               href="#carouselExampleFade"
+               role="button"
+               data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next"
+               href="#carouselExampleFade"
+               role="button"
+               data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <div class="my-glicth">
+            <div class="glitch" data-text="IT BRAINS">IT BRAINS</div>
+
+            <p>@Localizer["Slogan"]</p>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="itBtn" asp-area="AdminPanel" asp-controller="Dashboard"> Admin Panel</a>
+            }
+            else
+            {
+                @if (culture == "az")
+                {
+                    <a class="itBtn" asp-controller="University" asp-action="Student"> Qeydİyyatdan Keç</a>
+                }
+                else if (culture == "en")
+                {
+                    <a class="itBtn" asp-controller="University" asp-action="Student"> Register</a>
+                }
+                else if (culture == "ru")
+                {
+                    <a class="itBtn" asp-controller="University" asp-action="Student"> Регистр</a>
+                }
+            }
+        </div>
+    </section>
+    <!-- *********************   BackGround-Image End   ************************ -->
+    <!-- ******************************************************************** -->
+    <!-- ********************************************************************** -->
+    <!-- **************************   Services Start   ************************ -->
+    <section class="section services">
+        <div class="container">
+            <div class="row flex-column align-items-center justify-content-center">
+                <div class="col-lg-6">
+                    <h2 class="text-center">@Localizer["WantIt"]</h2>
+                    <p class="text-center mt-4">@Localizer["WantIt2"]</p>
+                </div>
+            </div>
+            <div class="row mt-5 justify-content-center">
+                @foreach (Service service in Model.Services)
+                {
+                    <div class="col-lg-3 col-md-6 col-sm-10 col-11">
+                        <div class="service">
+                            @if (culture == "az")
+                            {
+                                <div class="head">@service.AzServiceName</div>
+                                <div class="body">
+                                    @service.AzServiceDescription
+                                </div>
+                                <a asp-controller="Courses" asp-action="Detail" asp-route-id="@service.Id" class="footer">
+                                    ƏTRAFLI ÖYRƏN <i class="fas fa-chevron-right"></i>
+                                </a>
+                            }
+                            else if (culture == "en")
+                            {
+                                <div class="head">@service.EnServiceName</div>
+                                <div class="body">
+                                    @service.EnServiceDescription
+                                </div>
+                                <a asp-controller="Courses" asp-action="Detail" asp-route-id="@service.Id" class="footer">
+                                    LEARN MORE <i class="fas fa-chevron-right"></i>
+                                </a>
+                            }
+                            else if (culture == "ru")
+                            {
+                                <div class="head">@service.RuServiceName</div>
+                                <div class="body">
+                                    @service.RuServiceDescription
+                                </div>
+                                <a asp-controller="Courses" asp-action="Detail" asp-route-id="@service.Id" class="footer">
+                                    ВЫУЧИТЬ БОЛЬШЕ <i class="fas fa-chevron-right"></i>
+                                </a>
+                            }
+
+                            <div class="icon">
+                                @Html.Raw(service.ServiceIcon)
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <!-- **************************   Services End   ************************ -->
+    <!-- ********************************************************************** -->
+    <!-- **************************   İnfo start     ************************ -->
+    <section class="info">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <div class="info-data">
+                        @if (culture == "az")
+                        {
+                        <p class="info-title">Niyə IT Brains Academy ?</p>
+                            <p class="info-description">
+                                @Html.Raw(Model.About.AzDescription)
+                            </p>
+                        }
+                        else if (culture == "en")
+                        {
+                            <p class="info-title">Why IT BRAINS?</p>
+                            <p class="info-description">
+                                @Html.Raw(Model.About.EnDescription)
+                            </p>
+                        }
+                        else if (culture == "ru")
+                        {
+                            <p class="info-title">Почему IT BRAINS?</p>
+                            <p class="info-description">
+                                @Html.Raw(Model.About.RuDescription)
+                            </p>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <div class="info-video">
+                        <img src="~/src/img/@Model.About.Image" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- *********************  İnfo end    ************************ -->
+    <!-- ******************************************************************** -->
+    <!-- ********************************************************************** -->
+    <!-- ********************************************************************** -->
+    <!-- **************************        ************************ -->
+    <section class="news">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="news-title">
+
+                        <p> @Localizer["Latest"]</p>
+                    </div>
+                </div>
+                <div class="row align-items-center justify-content-center">
+                    @foreach (News item in Model.News)
+                    {
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="card" style="width: 100%">
+                                <div class="news-img">
+                                    <img src="~/src/img/news/@item.Image"
+                                         class="card-img-top"
+                                         alt="news1" />
+                                </div>
+                                <div class="card-body">
+                                    @if (culture == "az")
+                                    {
+                                        <h5 class="card-title">
+                                            @item.AzTitle
+                                        </h5>
+                                        <p class="card-text">
+                                            @item.AzSubTitle
+                                        </p>
+                                        <a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" class="news-button">
+                                            ARDINI OXU  <span> <i class="fas fa-angle-right"></i></span>
+                                        </a>
+                                    }
+                                    else if (culture == "en")
+                                    {
+                                        <h5 class="card-title">
+                                            @item.EnTitle
+                                        </h5>
+                                        <p class="card-text">
+                                            @item.EnSubTitle
+                                        </p>
+                                        <a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" class="news-button">
+                                            READ MORE <span> <i class="fas fa-angle-right"></i></span>
+                                        </a>
+                                    }
+                                    else if (culture == "ru")
+                                    {
+                                        <h5 class="card-title">
+                                            @item.RuTitle
+                                        </h5>
+                                        <p class="card-text">
+                                            @item.RuSubTitle
+                                        </p>
+                                        <a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" class="news-button">
+                                            ЧИТАТЬ ДАЛЕЕ <span> <i class="fas fa-angle-right"></i></span>
+                                        </a>
+                                    }
+
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </section>
+    <!-- *********************      ************************ -->
+    <!-- ******************************************************************** -->
+    <!-- ********************************************************************** -->
+    <!-- **************************   Teachers start     ************************ -->
+    @*<section class="graduated ">
+            <div class="idea">
+                @if (culture == "az")
+                {
+                    <p>MƏZUNLARIMIZIN FİKİRLƏRİ</p>
+                }
+                else if (culture == "en")
+                {
+                    <p>THOUGHTS OF OUR GRADUATES</p>
+                }
+                else if (culture == "ru")
+                {
+                    <p>МЫСЛИ ВЫПУСКНИКОВ</p>
+                }
+
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="owl-carousel owl-theme owl-graduated">
+                            @foreach (GraduatedOpinion item in Model.GraduatedOpinions)
+                            {
+                                <div class="item">
+                                    <i class="fas fa-quote-left"></i>
+                                    <div class="card">
+                                        <div class="card-about">
+                                            <div class="card-image">
+                                                <img class="card-img-top"
+                                                     src="~/src/img/students/@item.Image"
+                                                     alt="" />
+                                            </div>
+                                            <div class="card-name">
+                                                <p class="name">@item.Fullname</p>
+                                                <p class="field">@item.Field</p>
+                                            </div>
+                                        </div>
+                                        @if (culture == "az")
+                                        {
+                                            <div class="card-body">
+                                                <p>
+                                                    @item.AzDescription
+                                                </p>
+                                            </div>
+                                        }
+                                        else if (culture == "en")
+                                        {
+                                            <div class="card-body">
+                                                <p>
+                                                    @item.EnDescription
+                                                </p>
+                                            </div>
+                                        }
+                                        else if (culture == "ru")
+                                        {
+                                            <div class="card-body">
+                                                <p>
+                                                    @item.RuDescription
+                                                </p>
+                                            </div>
+                                        }
+                                        <p class="border-bottom"></p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+    <!-- *********************  Teachers end    ************************ -->
+    <!-- ******************************************************************** -->
+    <!-- ********************************************************************** -->
+    <!-- **************************   Graduate-Idea start     ************************ -->
+    <!-- ********************************************************************** -->
+    <!-- ***** Partners Start ***** -->
+    <section class="section" id="partners">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>ƏməkdaşlıqLar</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="owl-partners owl-carousel">
+
+                    <div clas="item " style="width: 100%; height: 300px; display: flex; align-items: center ">
+                        <img style="width:100%;height:150px;object-fit:cover" src="~/src/img/logo/Dövlət_Məşğulluq_Agentliyi_logo.png" alt="Sosial" />
+                    </div>
+
+                    <div clas="item " style="width: 100%; height: 300px; display: flex; align-items: center ">
+                        <img style="width:100%;height:300px;object-fit:cover" src="~/src/img/logo/cisco.png" alt="Cisco" />
+                    </div>
+                    <div clas="item " style="width:100%;height:300px;display:flex;align-items:center">
+                        <img style="width:100%;height:120px;object-fit:cover" src="~/src/img/logo/fes.png" alt="FES" />
+                    </div>
+                    <div clas="item " style="width: 100%; height: 300px; display: flex; align-items: center">
+                        <img style="width:100%;height:160px;object-fit:cover" src="~/src/img/logo/bgm.png" alt="Baki gencler merkezi" />
+                    </div>
+                    <div clas="item " style="width: 100%; height: 300px; display: flex; align-items: center ">
+                        <img style="width:100%;height:300px;object-fit:cover" src="~/src/img/logo/metabat2.png" alt="Metabat" />
+                    </div>
+                    <div clas="item " style="width: 100%; height: 300px; display: flex; align-items: center ">
+                        <img style="width:100%;height:300px;object-fit:cover" src="~/src/img/logo/oscorp.jpg" alt="Oscorp" />
+                    </div>
+                    <div clas="item " style="width: 100%; height: 300px; display: flex; align-items: center ">
+                        <img style="width:100%;height:300px;object-fit:cover" src="~/src/img/logo/karyera.jfif" alt="Karyera" />
+                    </div>
+                    <div clas="item " style="width: 100%; height: 300px; display: flex; align-items: center ">
+                        <img style="width:100%;height:300px;object-fit:cover" src="~/src/img/logo/birja.jpg" alt="Baku Birja" />
+                    </div>
+                    <div clas="item " style="width: 100%; height: 300px; display: flex; align-items: center ">
+                        <img style="width:100%;height:300px;object-fit:cover" src="~/src/img/logo/microsoft.jpg" alt="Microsoft" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- ***** Section Title End ***** -->
+        </div>
+    </section>
+    <!-- ***** Partners End ***** -->
+</main>
+<!-- *********************      Main  End     ************************ -->
+@section Scripts{
+    <script asp-append-version="true" src="~/src/js/home.js"></script>
+
+}

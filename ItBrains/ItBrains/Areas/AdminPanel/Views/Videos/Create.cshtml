@@ -1,0 +1,48 @@
+﻿
+@model Video
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">Youtube Video</h4>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Link">Embed Link</label>
+                        <input asp-for="Link" class="form-control">
+                        <span asp-validation-for="Link" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label> Dərslik (Kateqoriyası)</label>
+                        <select class="custom-select " name="lessonId" id="childCatId">
+                            @foreach (VideoLesson childCat in ViewBag.Lessons)
+                            {
+                                <option value="@childCat.Id">@childCat.AzName</option>
+                            }
+
+                        </select>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <button type="submit" class="effect effect-2 update mr-2">Yarat <i class="mdi mdi-arrow-right-bold"></i></button>
+                        <a asp-action="Index" class="effect effect-2 bg-secondary">Geri Dön <i class="mdi mdi-arrow-right-bold"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial">
+
+}
+
+
+
+
+
+
+

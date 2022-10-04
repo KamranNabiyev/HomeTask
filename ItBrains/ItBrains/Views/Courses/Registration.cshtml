@@ -1,0 +1,128 @@
+﻿@model RegistrationVM
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+@inject IViewLocalizer Localizer
+<!-- *********************     Main  Start     ************************ -->
+<main>
+    <section class="reg" style="background-image: url('../../src/img/test.gif');">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-7">
+                    <div class="registration">
+                        <div class="registration-about">
+                            <div class="registration-title">
+                                @if (culture == "az")
+                                {
+                                    <p>BİZ SİZƏ ZƏNG EDƏK</p>
+                                }
+                                else if (culture == "en")
+                                {
+                                    <p>WE CALL YOU</p>
+                                }
+                                else if (culture == "ru")
+                                {
+                                    <p>МЫ ЗВОНИМ ВАМ</p>
+                                }
+
+                            </div>
+                            <form method="post">
+                                <div class="form-selected">
+
+                                    @if (culture == "az")
+                                    {
+                                        <p>Təhsil sahəsi</p>
+                                    }
+                                    else if (culture == "en")
+                                    {
+                                        <p class="select-title">Field of education</p>
+                                    }
+                                    else if (culture == "ru")
+                                    {
+                                        <p>Область образования</p>
+                                    }
+
+                                    <select class="form-select" name="serId"
+                                            aria-label="Default select example">
+                                        @if (culture == "az")
+                                        {
+                                            @foreach (Service item in Model.Services)
+                                            {
+                                                if (ViewBag.ServiceId == item.Id)
+                                                {
+                                                    <option selected value="@item.Id">@item.AzServiceName</option>
+
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Id">@item.AzServiceName</option>
+
+                                                }
+                                            }
+                                        }
+                                        else if (culture == "en")
+                                        {
+                                            @foreach (Service item in Model.Services)
+                                            {
+                                                if (ViewBag.ServiceId == item.Id)
+                                                {
+                                                    <option selected value="@item.Id">@item.EnServiceName</option>
+
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Id">@item.EnServiceName</option>
+
+                                                }
+                                            }
+                                        }
+                                        else if (culture == "ru")
+                                        {
+                                            @foreach (Service item in Model.Services)
+                                            {
+                                                if (ViewBag.ServiceId == item.Id)
+                                                {
+                                                    <option selected value="@item.Id">@item.RuServiceName</option>
+
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Id">@item.RuServiceName</option>
+
+                                                }
+                                            }
+                                        }
+
+                                    </select>
+                                </div>
+                                <div class="form-name main-form">
+                                    <label for="name">@Localizer["Name"]</label>
+                                    <input asp-for="Name" />
+                                </div>
+
+                                <div class="form-phone main-form">
+                                    <label for="number">@Localizer["Phone"]</label>
+                                    <input asp-for="Phone" />
+                                </div>
+                                <div class="form-message main-form">
+                                    <label for="message">@Localizer["Message"]</label>
+                                    <input asp-for="Message" />
+                                </div>
+                                <div class="form-button">
+                                    <button type="submit" class="itBtn">@Localizer["Send"]</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- *********************       Main  End     ************************ -->
+@section Css{
+    <link rel="stylesheet"asp-append-version="true"  href="~/src/css/secondary.css" />
+}
+@section Scripts{
+    <partial name="_ValidationScriptsPartial">
+}

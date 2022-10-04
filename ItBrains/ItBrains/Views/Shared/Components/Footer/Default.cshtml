@@ -1,0 +1,234 @@
+﻿@inject IViewLocalizer Localizer
+@model Bio
+@{
+    Layout = null;
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+    var context = Context.Request;
+    var url = context.Path + context.QueryString;
+}
+<!-- *********************     Footer  Start     ************************ -->
+<footer>
+    <div class="container-fluid">
+        <div class="row justify-content-lg-center">
+            <div class="col-lg-12 col-sm-6 order-sm-1 order-1">
+                <div class="
+                nav-box
+                d-flex
+                justify-content-center
+                flex-lg-row flex-column
+                align-items-sm-start align-items-center
+              ">
+                    <div class="nav-link">
+                        <a asp-controller="Courses" asp-action="Index">@Localizer["Courses"]</a>
+                    </div>
+                    <div class="nav-link">
+                        <a asp-controller="Teachers" asp-action="Index">@Localizer["OurTeachers"]</a>
+                    </div>
+
+                    @*<div class="nav-link">
+            <a asp-controller="News" asp-action="Index">Xəbərlər</a>
+        </div>*@
+                    <div class="nav-link">
+                        <a asp-controller="Contact" asp-action="Index">@Localizer["Contact"]</a>
+                    </div>
+                    <div class="nav-link">
+                        <a asp-controller="Gallery" asp-action="Index">@Localizer["Gallery"]</a>
+                    </div>
+                    @*<div class="nav-link">
+            <a asp-controller="News" asp-action="Index">@Localizer["News"]</a>
+        </div>*@
+                    <div class="nav-link">
+                        <a asp-controller="Successes" asp-action="Index">@Localizer["Our Successes"]</a>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-sm-6 foot-logo pb-sm-0 pb-3 order-sm-2 order-3">
+                <div class="nav-logo">
+                    <img src="~/src/img/logo/footer-logo.png" alt="" />
+                </div>
+            </div>
+            <div class="col-sm-6 py-sm-0 py-3 order-sm-3 order-2">
+                <div class="
+                icons-soc
+                d-flex
+                align-items-center
+                justify-content-lg-end
+                justify-content-sm-start
+                justify-content-center
+              ">
+                    <div class="item">
+                        <a target="_blank" href="@Model.Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a target="_blank" href="@Model.Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a target="_blank" href="@Model.Linkedin">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a target="_blank" href="@Model.Youtube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a target="_blank" href="@Model.Telegram">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 order-sm-4 order-4">
+                <div class="cItb">IT BRAINS Academy © 2021</div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- *********************       Footer  End     ************************ -->
+<!-- ******************************************************************** -->
+<!-- *********************   Components Start  ************************ -->
+<div class="components">
+    <!-- *********************  Preloader Start  ********************** -->
+    <div class="preloader">
+        <div class="load-img">
+            <img src="~/src/img/loader.gif" alt="">
+        </div>
+    </div>
+    <!-- *********************  Preloader End  ************************ -->
+    <!-- ************************************************************** -->
+    <!-- *********************  Mobile Navigation Start  ********************** -->
+    <div id="nav-mobile-1">
+        <div class="nav-close-btn d-flex justify-content-end">
+            <a class="close-btn" id="Nav-close-btn">
+                <i class="fas fa-times-circle"></i>
+            </a>
+        </div>
+        @*<div class="languages-bar d-flex align-items-center justify-content-center">
+            <div class="lang d-flex">
+                <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="az" asp-route-url="@url">
+                    <img src="~/src/img/logo/azerbaijan.png" alt="" /> <span>AZE</span>
+                </a>
+            </div>
+            <div class="lang d-flex">
+                <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="en" asp-route-url="@url">
+                    <img src="~/src/img/logo/united-kingdom.png" alt="" />
+                    <span>ENG</span>
+                </a>
+            </div>
+            <div class="lang d-flex">
+                <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="ru" asp-route-url="@url">
+                    <img src="~/src/img/logo/russia.png" alt="" /> <span>RUS</span>
+                </a>
+            </div>*@
+        @*</div>*@
+
+        <div class="navigation">
+            <div class="nav-box">
+                <div class="nav-link">
+                    <a asp-controller="Courses" asp-action="Index">@Localizer["Courses"]</a>
+                </div>
+                <div class="nav-link">
+                    <a asp-controller="Teachers" asp-action="Index">@Localizer["OurTeachers"]</a>
+                </div>
+                <div class="nav-link">
+                    <a asp-controller="Successes" asp-action="Index">@Localizer["Our Successes"]</a>
+                </div>
+                <div class="nav-link">
+                    <a asp-controller="About1" asp-action="Index">DƏYƏRLƏRİMİZ</a>
+                </div>
+                <div class="nav-link">
+                    <a asp-controller="About2" asp-action="Index">MİSSİYAMIZ</a>
+                </div>
+                <div class="nav-link">
+                    <a asp-controller="About3" asp-action="Index">VİZYONUMUZ</a>
+                </div>
+                @*<div class="nav-link">
+            <a asp-controller="News" asp-action="Index">Xəbərlər</a>
+        </div>*@
+                <div class="nav-link">
+                    <a asp-controller="Contact" asp-action="Index">@Localizer["Contact"]</a>
+                </div>
+                <div class="nav-link">
+                    <a asp-controller="Gallery" asp-action="Index">@Localizer["Gallery"]</a>
+                </div>
+                @*<div class="nav-link">
+            <a asp-controller="News" asp-action="Index">@Localizer["News"]</a>
+        </div>*@
+
+            </div>
+        </div>
+        <div class="nav-text">
+            <div class="text"></div>
+        </div>
+        <div class="
+            icons-soc
+            d-flex
+            align-items-center
+            justify-content-center
+            mt-3
+          ">
+            <div class="item">
+                <a target="_blank" href="@Model.Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+            <div class="item">
+                <a target="_blank" href="@Model.Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <div class="item">
+                <a target="_blank" href="@Model.Linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            <div class="item">
+                <a target="_blank" href="@Model.Youtube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+            <div class="item">
+                <a target="_blank" href="@Model.Telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- *********************  Mobile Navigation End  ************************ -->
+    <!-- ********************************************************************** -->
+    <!-- ************************  Change Languages Start  ************************* -->
+    @*<div id="languages">
+            <div class="
+                languages-bar
+                d-flex
+                flex-sm-column
+                align-items-center
+                justify-content-center
+              ">
+
+                <div class="lang">
+                    <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="az" asp-route-url="@url">
+                        <img src="~/src/img/logo/azerbaijan.png" alt="" />
+                    </a>
+                </div>
+                <div class="lang">
+                    <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="en" asp-route-url="@url">
+                        <img src="~/src/img/logo/united-kingdom.png" alt="" />
+                    </a>
+                </div>
+                <div class="lang">
+                    <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="ru" asp-route-url="@url">
+                        <img src="~/src/img/logo/russia.png" alt="" />
+                    </a>
+                </div>
+            </div>
+        </div>*@
+    <!-- ************************  Change Languages End  ************************* -->
+</div>
+<!-- *********************    Components  End    ************************ -->

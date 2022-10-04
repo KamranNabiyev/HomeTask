@@ -1,0 +1,85 @@
+﻿@model RegistrationVM
+<!-- ********************************************************************** -->
+<section class="section social-con">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <div class="conIcons d-flex justify-content-center" >
+                    
+                    <div class="divImg">
+                        <img src="~/src/img/logo/footer-logo.png" alt="" />
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-md-6">
+                <div class="conText" style="font-size:18px">
+                    <div class="head">
+                        <span class="font-weight-bold">IT Brains Academy</span>-in
+                         təşkilatçılığı ilə IT və Proqramlaşdırma sahəsində biliklərini təkmilləşdirmək və real iş təcrübəsi qazanmaq istəyənlər üçün <span class="font-weight-bold"> ödənişsiz </span>təlimlərə start verilir.
+
+
+                    </div>
+
+                    <ul class="body">
+                        <li>FRONT-END PROQRAMLAŞDIRMA</li>
+                        <li>BACK-END PROQRAMLAŞDIRMA</li>
+                        <li>ŞƏBƏKƏ İNZİBATÇILIĞI</li>
+                        <li>TEXNİKİ DƏSTƏK\HELPDESK</li>
+                        <li>QRAFİK DİZAYN</li>
+                        <li>OFFICE 365 & WINDOWS 10</li>
+                        <li>IT SAHƏSİNDƏ İNGİLİS DİLİ</li>
+                    </ul>
+                    <div class="conFooter">
+                        Təlimlərdə kimlər iştirak edə bilər? IT və Proqramlaşdırma sahəsində minimal bilikləri olan tələbələr  Qeydiyyatdan keçmək üçün sağdakı qeydiyyat formunu doldurub və CV-nizi  <span class="font-weight-bold"> “CV yüklə” </span> bölməsindən əlavə edin.
+                    </div>
+                </div>
+            </div>*@
+            <div class="col-md-12">
+                <div class="myForm">
+                    <form class="soc-reg" method="post" enctype="multipart/form-data">
+                        <div class="soc-form">
+                            <label>Ad,Soyad</label>
+                            <input asp-for="Name" class="myInput" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="soc-form">
+                            <label>Mobil nömrə</label>
+                            <input asp-for="Phone" class="myInput" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                        <div class="soc-form">
+                            <label>Sahəni seç</label>
+                            <select name="courseName" id="">
+                                <option value="FRONT-END PROQRAMLAŞDIRMA">FRONT-END PROQRAMLAŞDIRMA</option>
+                                <option value="BACK-END PROQRAMLAŞDIRMA">BACK-END PROQRAMLAŞDIRMA</option>
+                                <option value="ŞƏBƏKƏ İNZİBATÇILIĞI">ŞƏBƏKƏ İNZİBATÇILIĞI</option>
+                                <option value="TEXNİKİ DƏSTƏK\HELPDESK">TEXNİKİ DƏSTƏK\HELPDESK</option>
+                                <option value="QRAFİK DİZAYN">QRAFİK DİZAYN</option>
+                                <option value="OFFICE 365 & WINDOWS 10">OFFICE 365 & WINDOWS 10</option>
+                                <option value="IT SAHƏSİNDƏ İNGİLİS DİLİ">IT SAHƏSİNDƏ İNGİLİS DİLİ</option>
+                            </select>
+                            <span class="text-danger"></span>
+                        </div>
+                        <!-- Upload Area -->
+                        
+                        
+                        <!-- End Upload Area -->
+                        <div class="socBtn d-flex justify-content-end">
+                            <button type="submit" class="itBtn">
+                                Müraciət et !
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ******************************************************************** -->
+@section Css{
+    <link rel="stylesheet"asp-append-version="true"  href="~/src/css/secondary.css" />
+}
+@section Scripts{
+    <partial name="_ValidationScriptsPartial">
+      
+}

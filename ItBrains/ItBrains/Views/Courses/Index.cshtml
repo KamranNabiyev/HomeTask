@@ -1,0 +1,76 @@
+﻿@model List<Service>
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+<!-- *********************     Main  Start     ************************ -->
+<main>
+    <section class="section services">
+        <div class="container">
+            <div class="row flex-column align-items-center justify-content-center">
+                <div class="col-lg-6">
+                    @if (culture == "az")
+                    {
+                        <h2 class="text-center">Kurslarımız</h2>
+                    }
+                    else if (culture == "en")
+                    {
+                        <h2 class="text-center">COURSES</h2>
+                    }
+                    else if (culture == "ru")
+                    {
+                        <h2 class="text-center">КУРСЫ</h2>
+                    }
+
+
+                </div>
+            </div>
+            <div class="row mt-5 justify-content-center">
+                @foreach (Service service in Model)
+                {
+                    <div class="col-lg-3 col-md-6 col-sm-10 col-11">
+                        <div class="service">
+                            @if (culture == "az")
+                            {
+                                <div class="head">@service.AzServiceName</div>
+                                <div class="body">
+                                    @service.AzServiceDescription
+                                </div>
+                                <a asp-controller="Courses" asp-action="Detail" asp-route-id="@service.Id" class="footer">
+                                    ƏTRAFLI ÖYRƏN <i class="fas fa-chevron-right"></i>
+                                </a>
+                            }
+                            else if (culture == "en")
+                            {
+                                <div class="head">@service.EnServiceName</div>
+                                <div class="body">
+                                    @service.EnServiceDescription
+                                </div>
+                                <a asp-controller="Courses" asp-action="Detail" asp-route-id="@service.Id" class="footer">
+                                    LEARN MORE <i class="fas fa-chevron-right"></i>
+                                </a>
+                            }
+                            else if (culture == "ru")
+                            {
+                                <div class="head">@service.RuServiceName</div>
+                                <div class="body">
+                                    @service.RuServiceDescription
+                                </div>
+                                <a asp-controller="Courses" asp-action="Detail" asp-route-id="@service.Id" class="footer">
+                                    ВЫУЧИТЬ БОЛЬШЕ <i class="fas fa-chevron-right"></i>
+                                </a>
+                            }
+
+                            <div class="icon">
+                                @Html.Raw(service.ServiceIcon)
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
+<!-- *********************      Main  End     ************************ -->
+@section Css{
+    <link rel="stylesheet"asp-append-version="true"  href="~/src/css/secondary.css" />
+}

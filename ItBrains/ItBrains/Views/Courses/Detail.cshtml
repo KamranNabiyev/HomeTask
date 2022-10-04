@@ -1,0 +1,125 @@
+﻿@model Service
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+<!-- *********************     Main  Start     ************************ -->
+<main>
+    <section id="service-detail" class="service-detail">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-7 col-md-10 ser-images">
+                    <div class="row">
+                        @foreach (ServiceImage item in Model.ServiceImages)
+                        {
+                            <div class="col-6 mt-3">
+                                <div class="ser-image">
+                                    <img src="~/src/img/courses/@item.Image" alt="" />
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-10 ser-details">
+                    <div class="ser-detail">
+                        @if (culture == "az")
+                        {
+                            <h1 class="ser-head">@Model.AzServiceName</h1>
+                            <div class="ser-description">
+                                @Html.Raw(Model.ServiceDetail.AzDescription)
+                            </div>
+                            <div class="service-details">
+                                <div class="detail d-flex align-items-center">
+                                    @Html.Raw(Model.ServiceDetail.TagIcon)
+                                    <div class="det-text">@Model.ServiceDetail.AzTagDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-calendar-alt det-icon"></i>
+                                    <div class="det-text">@Model.ServiceDetail.AzDateDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-clock det-icon"></i>
+                                    <div class="det-text">@Model.ServiceDetail.AzTimeDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-file-alt det-icon my-pt-5 my-pl-3"></i>
+                                    <div class="det-text">@Model.ServiceDetail.AzCertfDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-book-open det-icon my-pt-5"></i>
+                                    <div class="det-text">@Model.ServiceDetail.AzLessDescription</div>
+                                </div>
+                            </div>
+                            <a asp-controller="Courses" asp-action="Registration" asp-route-id="@Model.Id" class="itBtn">Qeydİyyatdan keç</a>
+                        }
+                        else if (culture == "en")
+                        {
+                            <h1 class="ser-head">@Model.EnServiceName</h1>
+                            <div class="ser-description">
+                                @Html.Raw(Model.ServiceDetail.EnDescription)
+                            </div>
+                            <div class="service-details">
+                                <div class="detail d-flex align-items-center">
+                                    @Html.Raw(Model.ServiceDetail.TagIcon)
+                                    <div class="det-text">@Model.ServiceDetail.EnTagDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-calendar-alt det-icon"></i>
+                                    <div class="det-text">@Model.ServiceDetail.EnDateDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-clock det-icon"></i>
+                                    <div class="det-text">@Model.ServiceDetail.EnTimeDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-file-alt det-icon my-pt-5 my-pl-3"></i>
+                                    <div class="det-text">@Model.ServiceDetail.EnCertfDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-book-open det-icon my-pt-5"></i>
+                                    <div class="det-text">@Model.ServiceDetail.EnLessDescription</div>
+                                </div>
+                            </div>
+                            <a asp-controller="Courses" asp-action="Registration" asp-route-id="@Model.Id" class="itBtn">Register</a>
+                        }
+                        else if (culture == "ru")
+                        {
+                            <h1 class="ser-head">@Model.RuServiceName</h1>
+                            <div class="ser-description">
+                                @Html.Raw(Model.ServiceDetail.RuDescription)
+                            </div>
+                            <div class="service-details">
+                                <div class="detail d-flex align-items-center">
+                                    @Html.Raw(Model.ServiceDetail.TagIcon)
+                                    <div class="det-text">@Model.ServiceDetail.RuTagDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-calendar-alt det-icon"></i>
+                                    <div class="det-text">@Model.ServiceDetail.RuDateDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-clock det-icon"></i>
+                                    <div class="det-text">@Model.ServiceDetail.RuTimeDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-file-alt det-icon my-pt-5 my-pl-3"></i>
+                                    <div class="det-text">@Model.ServiceDetail.RuCertfDescription</div>
+                                </div>
+                                <div class="detail d-flex">
+                                    <i class="fas fa-book-open det-icon my-pt-5"></i>
+                                    <div class="det-text">@Model.ServiceDetail.RuLessDescription</div>
+                                </div>
+                            </div>
+                            <a asp-controller="Courses" asp-action="Registration" asp-route-id="@Model.Id" class="itBtn">регистр</a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- *********************      Main  End     ************************ -->
+@section Css{
+    <link rel="stylesheet"asp-append-version="true"  href="~/src/css/secondary.css" />
+}

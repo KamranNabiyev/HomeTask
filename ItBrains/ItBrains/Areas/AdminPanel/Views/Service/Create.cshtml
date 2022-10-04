@@ -1,0 +1,494 @@
+﻿@model Service
+@{ ViewData["Title"] = "Create"; }
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">Kurs Yarat</h4>
+                </div>
+                <form class="forms-sample" method="post">
+
+                    <div class="form-group">
+                        <label asp-for="ServiceIcon">Kursun iconu</label>
+                        <input asp-for="ServiceIcon" class="form-control">
+                        <span asp-validation-for="ServiceIcon" class="text-danger"></span>
+                    </div>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">Kursun adı</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#az1" role="tab" aria-controls="home" aria-selected="true">Az</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#en1" role="tab" aria-controls="profile" aria-selected="false">En</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#ru1" role="tab" aria-controls="contact" aria-selected="false">Ru</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="az1" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form-group">
+                                <input asp-for="AzServiceName" class="form-control">
+                                <span asp-validation-for="AzServiceName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="en1" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="form-group">
+                                <input asp-for="EnServiceName" class="form-control">
+                                <span asp-validation-for="EnServiceName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ru1" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="form-group">
+                                <input asp-for="RuServiceName" class="form-control">
+                                <span asp-validation-for="RuServiceName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">ilk görünüşdəki mütəxəssisi olmaq</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#az2" role="tab" aria-controls="home" aria-selected="true">Az</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#en2" role="tab" aria-controls="profile" aria-selected="false">En</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#ru2" role="tab" aria-controls="contact" aria-selected="false">Ru</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="az2" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form-group">
+                                <input asp-for="AzServiceDescription" class="form-control">
+                                <span asp-validation-for="AzServiceDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="en2" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="form-group">
+                                <input asp-for="EnServiceDescription" class="form-control">
+                                <span asp-validation-for="EnServiceDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ru2" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="form-group">
+                                <input asp-for="RuServiceDescription" class="form-control">
+                                <span asp-validation-for="RuServiceDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex">
+
+                        <input class=" mb-3 mr-3" style="width:250px!important" type="file" id="image_loader" />
+                        <div style="width: 50px;height:50px">
+                            <div class="loading" style="display:none !important">
+                                <i class="fas fa-spinner"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="previews d-flex">
+                        <div class="source mr-5">
+                            <div class="d-flex align-items-center">
+                                <div id="image_input" style="display:none"></div>
+
+                            </div>
+                            <a id="crop-img" style="display:none !important" class="effect effect-2  mt-3">Kəs</a>
+                            <a id="save-crop-img" style="display:none !important;" class="effect effect-2  mt-3">Yadda Saxla</a>
+                        </div>
+
+                        <div class="crop">
+                            <img id="image_output" />
+                        </div>
+
+                    </div>
+                    <div id="gallery" class="d-flex justify-content-start">
+
+                    </div>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">Kurs haqqında Mətn</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#az3" role="tab" aria-controls="home" aria-selected="true">Az</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#en3" role="tab" aria-controls="profile" aria-selected="false">En</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#ru3" role="tab" aria-controls="contact" aria-selected="false">Ru</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="az3" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form-group">
+                                <textarea asp-for="ServiceDetail.AzDescription" class="form-control"></textarea>
+                                <span asp-validation-for="ServiceDetail.AzDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="en3" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="form-group">
+                                <textarea asp-for="ServiceDetail.EnDescription" class="form-control"></textarea>
+                                <span asp-validation-for="ServiceDetail.EnDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ru3" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="form-group">
+                                <textarea asp-for="ServiceDetail.RuDescription" class="form-control"></textarea>
+                                <span asp-validation-for="ServiceDetail.RuDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="ServiceDetail.TagIcon">Ətraflı səhifəsində ilk gürunəcək icon</label>
+                        <input asp-for="ServiceDetail.TagIcon" class="form-control">
+                        <span asp-validation-for="ServiceDetail.TagIcon" class="text-danger"></span>
+                    </div>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">Həmin İconun text-i</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#az4" role="tab" aria-controls="home" aria-selected="true">Az</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#en4" role="tab" aria-controls="profile" aria-selected="false">En</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#ru4" role="tab" aria-controls="contact" aria-selected="false">Ru</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="az4" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.AzTagDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.AzTagDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="en4" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.EnTagDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.EnTagDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ru4" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.RuTagDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.RuTagDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">Müddəti (Misal - 4 Ay)</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#az5" role="tab" aria-controls="home" aria-selected="true">Az</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#en5" role="tab" aria-controls="profile" aria-selected="false">En</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#ru5" role="tab" aria-controls="contact" aria-selected="false">Ru</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="az5" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.AzDateDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.AzDateDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="en5" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.EnDateDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.EnDateDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ru5" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.RuDateDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.RuDateDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">Zaman olaraq Dərslər (Misal - Həftədə 3 dəfə, 1.5-2 saat)</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#az6" role="tab" aria-controls="home" aria-selected="true">Az</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#en6" role="tab" aria-controls="profile" aria-selected="false">En</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#ru6" role="tab" aria-controls="contact" aria-selected="false">Ru</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="az6" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.AzTimeDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.AzTimeDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="en6" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.EnTimeDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.EnTimeDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ru6" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.RuTimeDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.RuTimeDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">Sertifakt necə alınır?</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#az7" role="tab" aria-controls="home" aria-selected="true">Az</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#en7" role="tab" aria-controls="profile" aria-selected="false">En</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#ru7" role="tab" aria-controls="contact" aria-selected="false">Ru</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="az7" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.AzCertfDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.AzCertfDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="en7" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.EnCertfDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.EnCertfDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ru7" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.RuCertfDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.RuCertfDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold">Dərslər Keçirilməsi haqda çox qısa yazı</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#az8" role="tab" aria-controls="home" aria-selected="true">Az</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#en8" role="tab" aria-controls="profile" aria-selected="false">En</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#ru8" role="tab" aria-controls="contact" aria-selected="false">Ru</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="az8" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.AzLessDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.AzLessDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="en8" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.EnLessDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.EnLessDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ru8" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="form-group">
+                                <input asp-for="ServiceDetail.RuLessDescription" class="form-control">
+                                <span asp-validation-for="ServiceDetail.RuLessDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <button type="submit" class="effect effect-2 create mr-2">Yarat <i class="mdi mdi-arrow-right-bold"></i></button>
+                        <a asp-action="Index" class="effect effect-2 bg-secondary">Stoka Bax <i class="mdi mdi-arrow-right-bold"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Css{
+    <link rel="stylesheet" href="~/toogoo/js/jcrop.css" />
+}
+@section Scripts{
+    <partial name="_ValidationScriptsPartial">
+
+        <script src="~/toogoo/js/jcrop.js"></script>
+
+        <script type="text/javascript">
+
+            var cropImg = document.getElementById('crop-img');
+            var saveImg = document.getElementById('save-crop-img');
+            var imageLoader = document.getElementById('image_loader');
+            imageLoader.addEventListener('change', handleImage, false);
+
+            function handleImage(e) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (event) {
+
+                    $(".loading").css("display", "block")
+                    var image = new Image();
+
+                    image.onload = function () {
+                        var canvas = document.createElement('canvas');
+                        canvas.width = image.width;
+                        canvas.height = image.height;
+                        var ctx = canvas.getContext('2d');
+                        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                        $('#image_input').html(['<img src="', canvas.toDataURL(), '"/>'].join(''));
+                        var img = $('#image_input img')[0];
+
+                        $('#image_input img').Jcrop({
+                            boxWidth: 400,
+                            bgColor: 'black',
+                            bgOpacity: .6,
+                            setSelect: [0, 0, 200, 3200],
+                            aspectRatio: 1,
+                            onChange: imgSelect
+
+                        });
+
+                        function imgSelect(selection) {
+                            canvas.width = 1000;
+                            canvas.height = 1000;
+
+                            var ctx = canvas.getContext('2d');
+                            ctx.beginPath()
+                            ctx.drawImage(img, selection.x, selection.y, selection.w, selection.h, 0, 0, canvas.width, canvas.height);
+                            $('#image_input').css("display", "block")
+                            $('#image_output').css("display", "block")
+                            $('#image_output').css("width", "500px")
+                            $('#image_output').css("height", "500px")
+                            $(".loading").css("display", "none")
+                            cropImg.style.display = "inline-block"
+                            saveImg.style.display = "inline-block"
+
+                        }
+                        cropImg.addEventListener("click", function () {
+
+                            $('#image_output').attr('src', canvas.toDataURL("image/jpeg", 0.8));
+
+                        })
+                        saveImg.onclick = function () {
+                            let canvasImage = canvas.toDataURL("image/jpeg", 0.8)
+
+                            var myImg = document.createElement("img")
+                            var myInput = document.createElement("input")
+                            var myButton = document.createElement("a")
+                            var myDiv = document.createElement("div")
+
+
+                            myImg.src = canvasImage;
+                            myImg.style.width = "150px";
+                            myImg.style.height = "150px";
+                            myImg.style.margin = "10px";
+
+                            myInput.setAttribute("name", "imgsCropped")
+                            myInput.setAttribute("value", myImg.src)
+                            myInput.hidden = true
+
+                            myButton.setAttribute("class", "effect effect-2 delete delete-imgs")
+                            myButton.textContent = "Sil"
+
+                            myDiv.setAttribute("class", "d-flex flex-column align-items-center mb-3")
+                            myDiv.append(myImg)
+                            myDiv.append(myButton)
+                            myDiv.append(myInput)
+
+
+                            $("#gallery").append(myDiv)
+
+                            //itemsArray.push(canvasImage)
+                            //itemsArray[itemsArray.length - 1].replace(",data", "arraydata")
+                            //itemsArray2 = itemsArray[itemsArray.length - 1].split("array")
+
+
+
+                            $('#image_output').css("display", "none")
+                            saveImg.style.display = "none"
+                            //$("#gallery").empty()
+
+                        }
+                    }
+                    image.src = event.target.result;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+
+            }
+
+            $(document).on('click', '.delete-imgs', function () {
+                $(this).parent().remove()
+            });
+
+        </script>
+
+        <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#ServiceDetail_AzDescription'))
+                .catch(error => {
+                    console.error(error);
+                });
+            ClassicEditor
+                .create(document.querySelector('#ServiceDetail_RuDescription'))
+                .catch(error => {
+                    console.error(error);
+                });
+            ClassicEditor
+                .create(document.querySelector('#ServiceDetail_EnDescription'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+
+}

@@ -1,0 +1,44 @@
+﻿@model LoginVM
+@{
+    Layout = "_Layout";
+}
+<!-- *********************     Main  Start     ************************ -->
+<main>
+    <section class="reg" style="background-image: url('../../src/img/web-developer.jpg');height:400px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-7">
+                    <div class="registration">
+                        <div class="registration-about">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <form method="post">
+                                <div class="form-name main-form">
+                                    <label for="UserName">Email</label>
+                                    <input asp-for="UserName" />
+                                    <span class="text-danger" asp-validation-for="UserName"></span>
+                                </div>
+
+                                <div class="form-name main-form">
+                                    <label for="Password">Password</label>
+                                    <input asp-for="Password" />
+                                    <span class="text-danger" asp-validation-for="Password"></span>
+
+                                </div>
+                                <div class="form-button">
+                                    <button type="submit" class="itBtn">Sign In</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- *********************       Main  End     ************************ -->
+@section Css{
+    <link rel="stylesheet"asp-append-version="true"  href="~/src/css/secondary.css" />
+}
+@section Scripts{
+    <partial name="_ValidationScriptsPartial">
+}

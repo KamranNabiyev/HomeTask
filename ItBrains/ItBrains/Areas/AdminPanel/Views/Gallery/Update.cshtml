@@ -1,0 +1,181 @@
+﻿
+@model Gallery
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">Qalereya</h4>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="d-flex">
+
+                        <input class=" mb-3 mr-3" style="width:250px!important" type="file" id="image_loader" />
+                        <div style="width: 50px;height:50px">
+                            <div class="loading" style="display:none !important">
+                                <i class="fas fa-spinner"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="previews d-flex">
+                        <div class="source mr-5">
+                            <div class="d-flex align-items-center">
+                                <div id="image_input" style="display:none"></div>
+
+                            </div>
+                            <a id="crop-img" style="display:none !important" class="effect effect-2  mt-3">Kəs</a>
+                            <a id="save-crop-img" style="display:none !important;" class="effect effect-2  mt-3">Yadda Saxla</a>
+                        </div>
+
+                        <div class="crop">
+                            <img id="image_output" />
+                        </div>
+                        <input id="imgCropped" name="imgCropped" type="hidden" />
+
+                    </div>
+                    @if (Model.IsTeacher)
+                    {
+                        <div class="form-group">
+                            <div class="form-check" style="margin-left:22px">
+                                <input class="form-check-input" type="radio" value="true" name="isTeacher" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Müəllim
+                                </label>
+                            </div>
+
+                            <div class="form-check" style="margin-left:22px">
+                                <input class="form-check-input" type="radio" value="false" name="isTeacher">
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Tələbə
+                                </label>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            <div class="form-check" style="margin-left:22px">
+                                <input class="form-check-input" type="radio" value="true" name="isTeacher">
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Müəllim
+                                </label>
+                            </div>
+
+                            <div class="form-check" style="margin-left:22px">
+                                <input class="form-check-input" type="radio" value="false" checked name="isTeacher">
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Tələbə
+                                </label>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="d-flex align-items-center">
+                        <button type="submit" class="effect effect-2 update mr-2">Düzəliş et <i class="mdi mdi-arrow-right-bold"></i></button>
+                        <a asp-action="Index" class="effect effect-2 bg-secondary">Geri Dön <i class="mdi mdi-arrow-right-bold"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Css{
+    <link rel="stylesheet" href="~/toogoo/js/jcrop.css" />
+}
+@section Scripts{
+    <partial name="_ValidationScriptsPartial">
+
+        <script src="~/toogoo/js/jcrop.js"></script>
+
+        <script type="text/javascript">
+            var cropImg = document.getElementById('crop-img');
+            var saveImg = document.getElementById('save-crop-img');
+            var imageLoader = document.getElementById('image_loader');
+            var imageLoader2 = document.getElementById('image_loader2');
+            imageLoader.addEventListener('change', handleImage, false);
+
+            function handleImage(e) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (event) {
+
+                    $(".loading").css("display", "block")
+                    var image = new Image();
+
+                    image.onload = function () {
+
+
+
+                        var canvas = document.createElement('canvas');
+
+                        canvas.width = image.width;
+                        canvas.height = image.height;
+
+                        var ctx = canvas.getContext('2d');
+                        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                        $('#image_input').html(['<img src="', canvas.toDataURL(), '"/>'].join(''));
+                        var img = $('#image_input img')[0];
+
+                        var canvas = document.createElement('canvas');
+
+                        $('#image_input img').Jcrop({
+                            boxWidth: 400,
+                            bgColor: 'black',
+                            bgOpacity: .6,
+                            setSelect: [0, 0, 200, 3200],
+                            aspectRatio: 1,
+                            onChange: imgSelect
+
+                        });
+
+                        function imgSelect(selection) {
+                            canvas.width = 1000;
+                            canvas.height = 1000;
+
+                            var ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, selection.x, selection.y, selection.w, selection.h, 0, 0, canvas.width, canvas.height);
+                            $('#image_input').css("display", "block")
+                            $('#image_output').css("display", "block")
+                            $('#image_output').css("width", "500px")
+                            $('#image_output').css("height", "500px")
+                            $(".loading").css("display", "none")
+                            cropImg.style.display = "inline-block"
+                            saveImg.style.display = "inline-block"
+                        }
+                        cropImg.addEventListener("click", function () {
+
+                            $('#image_output').attr('src', canvas.toDataURL());
+
+                        })
+                        saveImg.addEventListener("click", function () {
+
+                            //$('#Photo').val(dataURLtoFile(canvas.toDataURL("image.png"),"image.png"))
+                            $("#imgCropped").val(canvas.toDataURL("image/jpeg", 0.8))
+
+                            $('#image_output').css("display", "none")
+                            saveImg.style.display = "none"
+                            console.log($('#imgCropped').val())
+                        })
+                    }
+                    image.src = event.target.result;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+
+            }</script>
+
+
+
+}
+
+
+
+
+
+
+
+
