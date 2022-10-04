@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\ItBrains\\ItBrains\\ItBrains.csproj": {}
+    "C:\\Users\\user\\Desktop\\HomeTask\\ItBrains\\ItBrains\\ItBrains.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\ItBrains\\ItBrains\\ItBrains.csproj": {
+    "C:\\Users\\user\\Desktop\\HomeTask\\ItBrains\\ItBrains\\ItBrains.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\ItBrains\\ItBrains\\ItBrains.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\HomeTask\\ItBrains\\ItBrains\\ItBrains.csproj",
         "projectName": "ItBrains",
-        "projectPath": "C:\\Users\\user\\Desktop\\ItBrains\\ItBrains\\ItBrains.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\HomeTask\\ItBrains\\ItBrains\\ItBrains.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\ItBrains\\ItBrains\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\HomeTask\\ItBrains\\ItBrains\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
